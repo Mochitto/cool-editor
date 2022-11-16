@@ -47,7 +47,10 @@ bower_components
 
 # misc
 .sass-cache
+<<<<<<< HEAD
 *.css.map
+=======
+>>>>>>> c1c6ac9 (Fix: Added gitignore)
 connect.lock
 typings
 
@@ -90,6 +93,7 @@ lerna-debug.log
 # System Files
 .DS_Store
 Thumbs.db
+<<<<<<< HEAD
 
 # dependencies
 /node_modules
@@ -112,3 +116,5 @@ Thumbs.db
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+=======
+>>>>>>> c1c6ac9 (Fix: Added gitignore)
