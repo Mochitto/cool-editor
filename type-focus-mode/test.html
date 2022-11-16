@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Type focus mode test</title>
+</head>
+<body style="margin: 0">
+    <textarea name="target-textarea" id="target-textarea" style="display: none; width: 100vw; height: 100vh;"></textarea>
+    <div style="width: 100vw; height: 100vh; display: flex; background: brown;" id="focus-div" tabindex="0">
+        <span id="type-area" style="margin: auto; color: white; font-size: 2rem;">Start typing</span>
+        <button id="stop-button" style="background: white; padding: 20px; margin-top: auto; font-size: 2rem;">Stop focusing</button>
+    </div>
+    <script src="main.js"></script>
+</body>
+</html>
