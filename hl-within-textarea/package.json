@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "highlight-within-textarea": "^2.0.5"
+  }
+}
