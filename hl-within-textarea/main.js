@@ -27,6 +27,16 @@ function test() {
 }
 const eventListener = debounce(test);
 textarea.addEventListener("input", eventListener);
+function parseText(text) {
+    const sentenceRegex = /([\s\S]+?[!?\.])(\s*)/g;
+    let results = [];
+    let matches = text.matchAll(sentenceRegex); // This returns an iterator. Matches.next() returns an array with [0: full match; 1 (and on): capture groups] 
+    for (let [sentenceWithWhitespaces, sentence, whitespaces] of matches) {
+        results.push({ sentence, whitespaces });
+    }
+    return results;
+}
+console.log(parseText('The quick brown fox jumps over the lazy dog.\n It barked. this is another function.'));
 /*
 1. Get the text from textarea
     1.1 Create function to get the text
