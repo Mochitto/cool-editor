@@ -1,3 +1,31 @@
 textarea:focus {
     outline: none;
 }
+
+.editor {
+    position: relative;
+}
+
+#textarea {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+#text,
+#textarea {
+    width: 100vw;
+    height: 100vh;
+    font-family: monospace;
+    font-size: 16px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    background: transparent;
+    box-sizing: border-box;
+    border: none;
+    outline: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    resize: none;
+}

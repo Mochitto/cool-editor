@@ -1,25 +1,25 @@
-"use strict";
-function assertElementById(id) {
-    {
-        let element = document.getElementById(id);
-        if (element) {
-            return element;
-        }
-        else {
-            throw new Error(`Element with the id of: ${id} didn't exist.`);
-        }
+function assertElementById(id: string) {{
+    let element = document.getElementById(id)
+    if (element) {
+        return element
+    } else {
+        throw new Error(`Element with the id of: ${id} didn't exist.` )
     }
-}
-const textarea = assertElementById("textarea");
-const textDiv = assertElementById("text");
+}}
+
+const textarea = <HTMLTextAreaElement>assertElementById("textarea")
+const textDiv = assertElementById("text")
+
 function getTextareaVal() {
-    return textarea.value;
+    return textarea.value
 }
-textarea.addEventListener("input", (e) => { console.log("catched"); });
+
+textarea.addEventListener("input", (e) => {console.log("catched")})
+
 /*
 1. Get the text from textarea
     1.1 Create function to get the text
-    1.2 put it in a debouncer function
+    1.2 put it in a debouncer function 
     1.3 Apply it on "input" event
 
 2. Parse text
@@ -44,6 +44,6 @@ textarea.addEventListener("input", (e) => { console.log("catched"); });
         if differences:
             Clear the div
             Div = docFragment
-        else:
+        else: 
             nothing :)
-*/ 
+*/
