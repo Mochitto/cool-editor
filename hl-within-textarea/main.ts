@@ -29,6 +29,23 @@ function test() {
 const eventListener = debounce(test); 
 textarea.addEventListener("input", eventListener);
 
+function parseText(text: string) {
+    const regex = /([\s\S]+?[!?\.])(\s*)/g;
+
+    let result= [];
+    let matches;
+    while (matches = regex.exec(text)) {
+        console.log(matches);
+        let sentence = matches[0];
+        let whitespace = matches[1];
+
+        result.push({sentence, whitespace})
+    }
+    console.log(result);
+}
+
+parseText('The quick brown fox jumps over the lazy dog. It barked. this is another function.')
+
 /*
 1. Get the text from textarea
     1.1 Create function to get the text
