@@ -186,6 +186,7 @@
 		},
 
 		getRegExpRanges: function(input, regex) {
+			console.log(input)
 			let ranges = [];
 			let match;
 			while (match = regex.exec(input), match !== null) {
