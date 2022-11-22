@@ -15,7 +15,18 @@ const textDiv = assertElementById("text");
 function getTextareaVal() {
     return textarea.value;
 }
-textarea.addEventListener("input", (e) => { console.log("catched"); });
+function debounce(func, timeout = 200) {
+    let timer;
+    return (...args) => {
+        clearTimeout(timer);
+        timer = setTimeout(() => { func.apply(this, args); }, timeout);
+    }; //FIXME: figure out what type 'this' should have
+}
+function test() {
+    console.log('here');
+}
+const eventListener = debounce(test);
+textarea.addEventListener("input", eventListener);
 /*
 1. Get the text from textarea
     1.1 Create function to get the text

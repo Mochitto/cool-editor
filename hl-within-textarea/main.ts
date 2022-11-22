@@ -14,7 +14,20 @@ function getTextareaVal() {
     return textarea.value
 }
 
-textarea.addEventListener("input", (e) => {console.log("catched")})
+function debounce(func: Function, timeout = 200) {
+    let timer: number;
+    return (...args: any) => {
+    clearTimeout(timer);
+    timer = setTimeout(() => { func.apply(this, args); }, timeout);
+  }; //FIXME: figure out what type 'this' should have
+}
+
+function test() {
+    console.log('here')
+}
+
+const eventListener = debounce(test); 
+textarea.addEventListener("input", eventListener);
 
 /*
 1. Get the text from textarea
