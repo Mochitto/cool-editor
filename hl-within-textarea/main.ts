@@ -22,20 +22,13 @@ function debounce(func: Function, timeout = 200) {
   }; //FIXME: figure out what type 'this' should have
 }
 
-function test() {
-    console.log('here')
-}
-
-const eventListener = debounce(test); 
-textarea.addEventListener("input", eventListener);
-
 interface textNode {
     sentence: string,
     whitespaces: string,
     color?: string
 }
 
-function parseText(text: string): textNode[] {
+export function parseText(text: string): textNode[] {
     const sentenceRegex = /([\s\S]+?[!?\.]+)(\s*)/g;
 
     let results: textNode[] = []
@@ -47,13 +40,6 @@ function parseText(text: string): textNode[] {
 } 
 
 const parsedText = parseText('The quick brown fox jumps over the lazy dog?!\n It barked..... this is another function.')
-
-// const colorRefs = {
-//     '1-2': 'red',
-//     '3-4': 'green',
-//     '5-6': 'blue',
-//     '7-12': 'yellow'
-// }
 
 function getColorFromLength(length: number): string {
     switch (true) {
@@ -70,7 +56,7 @@ function getColorFromLength(length: number): string {
     }
 }
 
-function addColorProp(nodes: textNode[]): textNode[] {
+export function addColorProp(nodes: textNode[]): textNode[] {
     const coloredNodes = nodes.slice();
     coloredNodes.forEach(node => {
         const sentenceLen = node.sentence.split(/\s+/).length
@@ -79,7 +65,8 @@ function addColorProp(nodes: textNode[]): textNode[] {
     return coloredNodes;
 }
 
-console.log(addColorProp(parsedText));
+
+
 /*
 1. Get the text from textarea
     1.1 Create function to get the text
