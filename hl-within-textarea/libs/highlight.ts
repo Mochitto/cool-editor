@@ -1,4 +1,4 @@
-interface textNode {
+export interface textNode {
     sentence: string,
     whitespaces: string,
     color?: string
