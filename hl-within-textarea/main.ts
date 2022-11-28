@@ -36,7 +36,7 @@ interface textNode {
 }
 
 function parseText(text: string): textNode[] {
-    const sentenceRegex = /([\s\S]+?[!?\.])(\s*)/g;
+    const sentenceRegex = /([\s\S]+?[!?\.]+)(\s*)/g;
 
     let results: textNode[] = []
     let matches = text.matchAll(sentenceRegex)  // This returns an iterator. Matches.next() returns an array with [0: full match; 1 (and on): capture groups] 
@@ -46,8 +46,40 @@ function parseText(text: string): textNode[] {
     return results
 } 
 
-console.log(parseText('The quick brown fox jumps over the lazy dog.\n It barked. this is another function.'))
+const parsedText = parseText('The quick brown fox jumps over the lazy dog?!\n It barked..... this is another function.')
 
+// const colorRefs = {
+//     '1-2': 'red',
+//     '3-4': 'green',
+//     '5-6': 'blue',
+//     '7-12': 'yellow'
+// }
+
+function getColorFromLength(length: number): string {
+    switch (true) {
+        case (length <= 2):
+            return 'red';
+        case (length <= 4):
+            return 'green';
+        case (length <= 6):
+            return 'blue';
+        case (length < 12):
+            return 'yellow';
+        default:
+            return 'pink';
+    }
+}
+
+function addColorProp(nodes: textNode[]): textNode[] {
+    const coloredNodes = nodes.slice();
+    coloredNodes.forEach(node => {
+        const sentenceLen = node.sentence.split(/\s+/).length
+        node.color = getColorFromLength(sentenceLen);
+    })
+    return coloredNodes;
+}
+
+console.log(addColorProp(parsedText));
 /*
 1. Get the text from textarea
     1.1 Create function to get the text
@@ -55,10 +87,10 @@ console.log(parseText('The quick brown fox jumps over the lazy dog.\n It barked.
     1.3 Apply it on "input" event
 
 2. Parse text
-    2.1 Split it with regex (FIXME: MULTIPLE ?!. DO NOT WORK)
+    2.1 Split it with regex 
         
         ([\s\S]+? Match anything, not greedy
-        [!?\.]) Either . ? !
+        [!?\.]+) Either . ? !
         (\s*)  Match zero or more whitespaces
 
     2.2 Store in array as [{sentence: $1, whitespace: $2}...]
