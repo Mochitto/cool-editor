@@ -1,4 +1,3 @@
-"use strict";
 function assertElementById(id) {
     {
         let element = document.getElementById(id);
@@ -13,59 +12,18 @@ function assertElementById(id) {
 const textarea = assertElementById("textarea");
 const textDiv = assertElementById("text");
 function getTextareaVal() {
+    console.log("hello");
     return textarea.value;
 }
 function debounce(func, timeout = 200) {
     let timer;
     return (...args) => {
         clearTimeout(timer);
-        timer = setTimeout(() => { func.apply(this, args); }, timeout);
+        timer = setTimeout(() => { func(args); }, timeout);
     }; //FIXME: figure out what type 'this' should have
 }
-function test() {
-    console.log('here');
-}
-const eventListener = debounce(test);
-textarea.addEventListener("input", eventListener);
-function parseText(text) {
-    const sentenceRegex = /([\s\S]+?[!?\.]+)(\s*)/g;
-    let results = [];
-    let matches = text.matchAll(sentenceRegex); // This returns an iterator. Matches.next() returns an array with [0: full match; 1 (and on): capture groups] 
-    for (let [sentenceWithWhitespaces, sentence, whitespaces] of matches) {
-        results.push({ sentence, whitespaces });
-    }
-    return results;
-}
-const parsedText = parseText('The quick brown fox jumps over the lazy dog?!\n It barked..... this is another function.');
-// const colorRefs = {
-//     '1-2': 'red',
-//     '3-4': 'green',
-//     '5-6': 'blue',
-//     '7-12': 'yellow'
-// }
-function getColorFromLength(length) {
-    switch (true) {
-        case (length <= 2):
-            return 'red';
-        case (length <= 4):
-            return 'green';
-        case (length <= 6):
-            return 'blue';
-        case (length < 12):
-            return 'yellow';
-        default:
-            return 'pink';
-    }
-}
-function addColorProp(nodes) {
-    const coloredNodes = nodes.slice();
-    coloredNodes.forEach(node => {
-        const sentenceLen = node.sentence.split(/\s+/).length;
-        node.color = getColorFromLength(sentenceLen);
-    });
-    return coloredNodes;
-}
-console.log(addColorProp(parsedText));
+textarea.addEventListener("keypress", debounce(getTextareaVal));
+export {};
 /*
 1. Get the text from textarea
     1.1 Create function to get the text
