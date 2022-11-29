@@ -2,9 +2,15 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.addColorProp = exports.parseText = void 0;
 function parseText(text) {
-    const sentenceRegex = /([\s\S]+?[!?\.]+)(\s*)/g;
+    const sentenceRegex = /([\s\S]+?[!?\.\n]+)(\s*)/g;
     let results = [];
     let matches = text.matchAll(sentenceRegex); // This returns an iterator. Matches.next() returns an array with [0: full match; 1 (and on): capture groups] 
+    /*  FIXME
+        Explanation of lines 20-33:
+            Last index and last Length refer to the last match.
+            They are overwritten at every iteration; at the end of the loop they will hold the index value of the last match.
+            Starting from that, we can get the last sentence.
+    */
     let lastIndex = 0; // FIXME: VERY QUESTIONABLE 
     let lastLength = 0; // FIXME: VERY QUESTIONABLE 
     for (let match of matches) {
@@ -16,9 +22,6 @@ function parseText(text) {
     }
     lastIndex = lastIndex || 0; // FIXME: VERY QUESTIONABLE 
     results.push({ sentence: text.slice(lastIndex + lastLength), whitespaces: "" }); // FIXME: VERY QUESTIONABLE 
-    // let found = false
-    // let current = 0
-    // let lastSlice = text.search(/[!?\.]+\s*/)
     return results;
 }
 exports.parseText = parseText;
