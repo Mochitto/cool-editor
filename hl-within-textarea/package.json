@@ -4,7 +4,8 @@
   "description": "",
   "main": "main.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "build": "esbuild main.ts --bundle --minify --target=es6 --outfile=bundled-main.js"
   },
   "author": "",
   "license": "ISC",
@@ -13,5 +14,9 @@
     "jest": "^29.3.1",
     "ts-jest": "^29.0.3",
     "typescript": "^4.9.3"
+  },
+  "dependencies": {
+    "esbuild": "^0.15.16",
+    "watch": "^1.0.2"
   }
 }

@@ -1,3 +1,6 @@
+"use strict";
+const highlight_1 = require("./libs/highlight");
+const highlight_2 = require("./libs/highlight");
 function assertElementById(id) {
     {
         let element = document.getElementById(id);
@@ -12,7 +15,6 @@ function assertElementById(id) {
 const textarea = assertElementById("textarea");
 const textDiv = assertElementById("text");
 function getTextareaVal() {
-    console.log("hello");
     return textarea.value;
 }
 function debounce(func, timeout = 200) {
@@ -20,10 +22,15 @@ function debounce(func, timeout = 200) {
     return (...args) => {
         clearTimeout(timer);
         timer = setTimeout(() => { func(args); }, timeout);
-    }; //FIXME: figure out what type 'this' should have
+    };
 }
-textarea.addEventListener("keypress", debounce(getTextareaVal));
-export {};
+textarea.addEventListener("keypress", debounce(main, 500));
+function main() {
+    const content = getTextareaVal();
+    const parsedText = (0, highlight_1.parseText)(content);
+    const parsedTextWithColorProps = (0, highlight_2.addColorProp)(parsedText);
+    console.log(parsedTextWithColorProps);
+}
 /*
 1. Get the text from textarea
     1.1 Create function to get the text

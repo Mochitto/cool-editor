@@ -15,8 +15,7 @@ const textarea = <HTMLTextAreaElement>assertElementById("textarea")
 const textDiv = assertElementById("text")
 
 function getTextareaVal() {
-    console.log("hello")
-    return textarea.value
+    return textarea.value;
 }
 
 function debounce(func: Function, timeout = 200) {
@@ -24,11 +23,19 @@ function debounce(func: Function, timeout = 200) {
     return (...args: any) => {
         clearTimeout(timer);
         timer = setTimeout(() => { func(args); }, timeout);
-    }; //FIXME: figure out what type 'this' should have
+    };
 }
 
+textarea.addEventListener("keypress", debounce(main, 500));
 
-textarea.addEventListener("keypress", debounce(getTextareaVal))
+function main() { // TODO: rename function
+    const content = getTextareaVal();
+    console.log(content);
+    const parsedText = parseText(content);
+    console.log(parsedText);
+    const parsedTextWithColorProps = addColorProp(parsedText);
+    console.log(parsedTextWithColorProps);
+}
 
 
 /*
