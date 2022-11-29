@@ -25,7 +25,7 @@ function debounce(func, timeout = 200) {
         timer = setTimeout(() => { func(args); }, timeout);
     };
 }
-textarea.addEventListener("keypress", debounce(main, 500));
+textarea.addEventListener("input", debounce(main, 10));
 function main() {
     const content = getTextareaVal();
     const parsedText = (0, highlight_1.parseText)(content);

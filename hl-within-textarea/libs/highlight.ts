@@ -9,10 +9,26 @@ export function parseText(text: string): textNode[] {
 
     let results: textNode[] = []
     let matches = text.matchAll(sentenceRegex)  // This returns an iterator. Matches.next() returns an array with [0: full match; 1 (and on): capture groups] 
-    for (let [sentenceWithWhitespaces, sentence, whitespaces] of matches) {
+    
+    let lastIndex: number | undefined = 0// FIXME: VERY QUESTIONABLE 
+    let lastLength = 0// FIXME: VERY QUESTIONABLE 
+    for (let match of matches) {
+        let sentence = match[1]
+        let whitespaces = match[2]
         results.push({sentence, whitespaces})
+
+        lastIndex = match.index// FIXME: VERY QUESTIONABLE 
+        lastLength = match[0].length // FIXME: VERY QUESTIONABLE 
     }
-    return results
+
+    lastIndex = lastIndex || 0  // FIXME: VERY QUESTIONABLE 
+    results.push({sentence: text.slice(lastIndex+lastLength), whitespaces: ""})// FIXME: VERY QUESTIONABLE 
+
+    // let found = false
+    // let current = 0
+    // let lastSlice = text.search(/[!?\.]+\s*/)
+
+    return results 
 } 
 
 const parsedText = parseText('The quick brown fox jumps over the lazy dog?!\n It barked..... this is another function.')

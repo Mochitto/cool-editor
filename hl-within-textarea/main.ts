@@ -26,7 +26,7 @@ function debounce(func: Function, timeout = 200) {
     };
 }
 
-textarea.addEventListener("keypress", debounce(main, 500));
+textarea.addEventListener("input", debounce(main, 10));
 
 function main() { // TODO: rename function
     const content = getTextareaVal();
