@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 const highlight_1 = require("./libs/highlight");
 const highlight_2 = require("./libs/highlight");
 function assertElementById(id) {
@@ -29,7 +30,24 @@ function main() {
     const content = getTextareaVal();
     const parsedText = (0, highlight_1.parseText)(content);
     const parsedTextWithColorProps = (0, highlight_2.addColorProp)(parsedText);
-    console.log(parsedTextWithColorProps);
+    let fragment = createSpansInFragment(parsedTextWithColorProps);
+    textDiv.innerHTML = "";
+    textDiv.appendChild(fragment);
+}
+function createSpansInFragment(textNodes) {
+    const fragment = document.createDocumentFragment();
+    for (let textNode of textNodes) {
+        let spanContent = document.createTextNode(textNode.sentence);
+        let span = document.createElement("span");
+        span.style.background = textNode.color || "black"; // FIXME: check for color property
+        span.appendChild(spanContent);
+        fragment.appendChild(span);
+        let whitespaces = document.createTextNode(textNode.whitespaces);
+        let whitespacesSpan = document.createElement("span");
+        whitespacesSpan.appendChild(whitespaces);
+        fragment.appendChild(whitespacesSpan);
+    }
+    return fragment;
 }
 /*
 1. Get the text from textarea

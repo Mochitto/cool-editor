@@ -30,13 +30,31 @@ textarea.addEventListener("keypress", debounce(main, 500));
 
 function main() { // TODO: rename function
     const content = getTextareaVal();
-    console.log(content);
     const parsedText = parseText(content);
-    console.log(parsedText);
     const parsedTextWithColorProps = addColorProp(parsedText);
-    console.log(parsedTextWithColorProps);
+    let fragment = createSpansInFragment(parsedTextWithColorProps)
+    textDiv.innerHTML = ""
+    textDiv.appendChild(fragment)
 }
 
+
+function createSpansInFragment(textNodes: textNode[]) {
+    const fragment = document.createDocumentFragment()
+    for (let textNode of textNodes) {
+        let spanContent = document.createTextNode(textNode.sentence)
+        let span = document.createElement("span")
+        span.style.background = textNode.color || "black" // FIXME: check for color property
+
+        span.appendChild(spanContent)
+        fragment.appendChild(span)        
+
+        let whitespaces = document.createTextNode(textNode.whitespaces)
+        let whitespacesSpan = document.createElement("span")
+        whitespacesSpan.appendChild(whitespaces)
+        fragment.appendChild(whitespacesSpan)
+    }
+    return fragment
+}
 
 /*
 1. Get the text from textarea
