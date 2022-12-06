@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.addColorProp = exports.parseText = void 0;
 function parseText(text) {
-    const sentenceRegex = /([\s\S]+?[!?\.\n]+)(\s*)/g;
+    const sentenceRegex = /([\s\S]+?[!?\.\n]+)(\s+)/g;
     let results = [];
     let matches = text.matchAll(sentenceRegex); // This returns an iterator. Matches.next() returns an array with [0: full match; 1 (and on): capture groups] 
     /*  FIXME

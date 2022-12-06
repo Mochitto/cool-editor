@@ -5,7 +5,7 @@ export interface textNode {
 }
 
 export function parseText(text: string): textNode[] {
-    const sentenceRegex = /([\s\S]+?[!?\.\n]+)(\s*)/g;
+    const sentenceRegex = /([\s\S]+?[!?\.\n]+)(\s+)/g;
 
     let results: textNode[] = []
     let matches = text.matchAll(sentenceRegex)  // This returns an iterator. Matches.next() returns an array with [0: full match; 1 (and on): capture groups] 
@@ -31,7 +31,6 @@ export function parseText(text: string): textNode[] {
 
     lastIndex = lastIndex || 0  // FIXME: VERY QUESTIONABLE 
     results.push({sentence: text.slice(lastIndex+lastLength), whitespaces: ""})// FIXME: VERY QUESTIONABLE 
-
 
     return results 
 } 
