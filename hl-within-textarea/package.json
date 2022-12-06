@@ -5,7 +5,7 @@
   "main": "main.js",
   "scripts": {
     "test": "jest",
-    "build": "esbuild main.ts --bundle --minify --target=es6 --outfile=bundled-main.js"
+    "build": "esbuild ./source/main.ts --bundle --minify --target=es6 --outfile=bundled-main.js"
   },
   "author": "",
   "license": "ISC",
