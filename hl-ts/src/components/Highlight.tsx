@@ -3,20 +3,11 @@ import * as ReactDOM from 'react-dom/client';
 
 import { textNode, parseText, addColorProp } from '../libs/highlight';
 
-const textarea = assertQuerySelector("textarea") as HTMLTextAreaElement
-
 function assertQuerySelector(id: string) {
     let element = document.querySelector(id)
     if (element) return element 
     else throw new Error(`Element with the id of: ${id} didn't exist.` )
 }
-
-let [parsedText, setParsedText] = useState(textarea.value);
-
-useEffect(() => {
-    console.log(parsedText)
-}, [parsedText])
-
 function debounce(func: Function, timeout = 200) {
     let timer: NodeJS.Timeout;
     return (...args: any) => {
