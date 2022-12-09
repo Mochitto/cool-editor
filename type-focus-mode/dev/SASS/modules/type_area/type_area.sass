@@ -1,0 +1,45 @@
+.type_area
+    width: 70%
+    height: 40%
+    background: red
+    position: relative
+    border-radius: 20px
+    display: flex
+    align-items: center
+    font-size: 2rem
+    
+.type_area__input
+
+.type_area__hidden
+    width: 0
+    height: 0
+    overflow: hidden
+
+.type_area__focus
+    position: absolute
+    width: 100%
+    height: 100%
+    left:0
+    top: 0
+    display: flex
+    align-items: center
+    justify-content: center
+    backdrop-filter: blur(10px)
+    -webkit-backdrop-filter: blur(10px)
+    border-radius: 20px
+    &--ishidden
+        display: none
+
+
+.type_area__display
+    display: flex
+    justify-content: flex-end
+    
+    width: 70%
+    
+    &__previous
+        color: $ancillary-color
+        margin-right: 10px
+    &__current
+        color: $main-color
+    

@@ -5,13 +5,28 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Type focus mode test</title>
+    <link rel="stylesheet" href="compiled/style.css">
 </head>
-<body style="margin: 0">
-    <textarea name="target-textarea" id="target-textarea" style="display: none; width: 100vw; height: 100vh;"></textarea>
-    <div style="width: 100vw; height: 100vh; display: flex; background: brown;" id="focus-div" tabindex="0">
-        <span id="type-area" style="margin: auto; color: white; font-size: 2rem;">Start typing</span>
-        <button id="stop-button" style="background: white; padding: 20px; margin-top: auto; font-size: 2rem;">Stop focusing</button>
-    </div>
-    <script src="main.js"></script>
+<body>
+    <header class="header">
+
+    </header>
+    <main>
+    <section class="l-viewport main-background">
+        <div class="type_area">
+            <div class="type_area__hidden">
+                <input type="text" id="writing_input" class="type_area__input">
+            </div>
+            <div class="type_area__focus l-fullWidthFullHeight" id="focus_area">
+                <span>Click here to focus</span>
+            </div>
+            <div class="type_area__display">
+                <span class="type_area__display__previous" id="previous_word"></span>
+                <span class="type_area__display__current" id="current_word">Start typing</span>
+            </div>
+        </div>
+    </section>
+    </main>
+    <script src="./compiled/main.js"></script>
 </body>
 </html>
