@@ -1,29 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import '../App.css'
-
-import { textNode, parseText, addColorProp } from '../libs/highlight';
 import SpanFragments from './Highlight';
 
+const Textarea: React.FC = () => {
 
-function assertQuerySelector(id: string) {
-    let element = document.querySelector(id)
-    if (element) return element 
-    else throw new Error(`Element with the id of: ${id} didn't exist.` )
-}
-
-const Textarea = () => {
-
-    useEffect(() => {
-        console.log(parseText(assertQuerySelector("textarea").value))
-    }, [assertQuerySelector("textarea").value]);
+    const [text, setText] = useState<string>("")
 
     return (
-        <section className="editor">
-            <div id="text">
-                <SpanFragments textNodes={test}/>   
-            </div>
-            <textarea name="textarea" id="textarea"></textarea>
-        </section>
+        <>
+            <section className="editor">
+                <div id='text'>
+                    <SpanFragments text={text}/>
+                </div>
+                <textarea 
+                name="textarea" id="textarea" 
+                onInput={(event) => {setText(event.currentTarget.value)}} 
+                value={text}>
+                </textarea>
+            </section>
+        </>
     )
 }
 

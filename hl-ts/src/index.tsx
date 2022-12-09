@@ -2,7 +2,6 @@ import React, {useState, useEffect} from 'react';
 import * as ReactDOM from 'react-dom/client';
 import SpanFragments from './components/Highlight';
 import './App.css'
-import { parseText } from './libs/highlight';
 
 import Textarea from './components/Textarea';
 

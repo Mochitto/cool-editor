@@ -3,23 +3,16 @@ import * as ReactDOM from 'react-dom/client';
 
 import { textNode, parseText, addColorProp } from '../libs/highlight';
 
-function assertQuerySelector(id: string) {
-    let element = document.querySelector(id)
-    if (element) return element 
-    else throw new Error(`Element with the id of: ${id} didn't exist.` )
-}
-function debounce(func: Function, timeout = 200) {
-    let timer: NodeJS.Timeout;
-    return (...args: any) => {
-        clearTimeout(timer);
-        timer = setTimeout(() => { func(args); }, timeout);
-    };
+function getTextNodes(text: string): textNode[] {
+    const parsedText = parseText(text)
+    const coloredTextNodes = addColorProp(parsedText)
+    return coloredTextNodes
 }
 
-const SpanFragments = ({textNodes}: {textNodes: textNode[]}) => {
+const SpanFragments = ({text}: {text: string}) => {
     return (
         <React.Fragment>
-            {textNodes.map((textNode: textNode) => (
+            {getTextNodes(text).map((textNode: textNode) => (
                 <>
                     <span style={{background: textNode.color}}>
                         {textNode.sentence}
