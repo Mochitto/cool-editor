@@ -36,19 +36,30 @@ export function parseText(text: string): textNode[] {
 } 
 
 function getColorFromLength(length: number): string {
-    switch (true) {
-        case (length <= 2):
-            return 'red';
-        case (length <= 4):
-            return 'green';
-        case (length <= 6):
-            return 'blue';
-        case (length < 12):
-            return 'yellow';
-        default:
-            return 'pink';
+    const lengthToColorMap = {
+        '1-2': 'red',
+        '3-4': 'green',
+        '5-6': 'blue',
+        '7-11': 'yellow',
+        '12+': 'pink',
+    };
+
+    for (const range in lengthToColorMap) {
+        if (range === '12+') {
+            if (length >= 12) {
+                return lengthToColorMap[range];
+            }
+        } else {
+            const [min, max] = range.split('-');
+            if (length >= Number(min) && length <= Number(max)) {
+                return lengthToColorMap[range];
+            }
+        }
     }
+
+    return 'pink'; // length 0
 }
+
 
 export function addColorProp(nodes: textNode[]): textNode[] {
     const coloredNodes = nodes.slice();
