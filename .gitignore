@@ -48,9 +48,13 @@ bower_components
 # misc
 .sass-cache
 <<<<<<< HEAD
+<<<<<<< HEAD
 *.css.map
 =======
 >>>>>>> c1c6ac9 (Fix: Added gitignore)
+=======
+*.css.map
+>>>>>>> 6f36095 (step: rebase)
 connect.lock
 typings
 
