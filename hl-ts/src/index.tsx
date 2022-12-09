@@ -1,9 +1,8 @@
-import React, {useState, useEffect} from 'react';
 import * as ReactDOM from 'react-dom/client';
-import SpanFragments from './components/Highlight';
+// Components
+import Textarea from './components/Highlight_textarea';
+// Style
 import './App.css'
-
-import Textarea from './components/Textarea';
 
 function assertQuerySelector(id: string) {
     let element = document.querySelector(id)

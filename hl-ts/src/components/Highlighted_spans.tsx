@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import * as ReactDOM from 'react-dom/client';
-
+import React from 'react';
+// Libs
 import { textNode, parseText, addColorProp } from '../libs/highlight';
 
 function getTextNodes(text: string): textNode[] {

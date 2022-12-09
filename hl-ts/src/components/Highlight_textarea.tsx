@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import '../App.css'
-import SpanFragments from './Highlight';
+import React, { useState} from 'react';
+// Components
+import SpanFragments from './Highlighted_spans';
 
 const Textarea: React.FC = () => {
 
