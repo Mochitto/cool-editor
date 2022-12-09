@@ -4,7 +4,7 @@ export interface textNode {
     color?: string
 }
 
-export function parseText(text: string): textNode[] {
+ function parseText(text: string): textNode[] {
     const sentenceRegex = /([\s\S]+?[!?\.\n]+)(\s+)/g;
 
     let results: textNode[] = []
@@ -61,11 +61,17 @@ function getColorFromLength(length: number): string {
 }
 
 
-export function addColorProp(nodes: textNode[]): textNode[] {
+function addColorProp(nodes: textNode[]): textNode[] {
     const coloredNodes = nodes.slice();
     coloredNodes.forEach(node => {
         const sentenceLen = node.sentence.split(/\s+/).length
         node.color = getColorFromLength(sentenceLen);
     })
     return coloredNodes;
+}
+
+export function getTextNodes(text: string): textNode[] {
+    const parsedText = parseText(text)
+    const coloredTextNodes = addColorProp(parsedText)
+    return coloredTextNodes
 }

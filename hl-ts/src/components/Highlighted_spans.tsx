@@ -1,12 +1,6 @@
 import React from 'react';
 // Libs
-import { textNode, parseText, addColorProp } from '../libs/highlight';
-
-function getTextNodes(text: string): textNode[] {
-    const parsedText = parseText(text)
-    const coloredTextNodes = addColorProp(parsedText)
-    return coloredTextNodes
-}
+import { textNode, getTextNodes } from '../libs/highlight';
 
 const SpanFragments = ({text}: {text: string}) => {
     return (

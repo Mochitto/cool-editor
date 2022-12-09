@@ -7,18 +7,16 @@ const Textarea: React.FC = () => {
     const [text, setText] = useState<string>("")
 
     return (
-        <>
-            <section className="editor">
-                <div id='text'>
-                    <SpanFragments text={text}/>
-                </div>
-                <textarea 
-                name="textarea" id="textarea" 
-                onInput={(event) => {setText(event.currentTarget.value)}} 
-                value={text}>
-                </textarea>
-            </section>
-        </>
+        <section className="editor">
+            <div id='text'>
+                <SpanFragments text={text}/>
+            </div>
+            <textarea 
+            name="textarea" id="textarea" 
+            onInput={(event) => {setText(event.currentTarget.value)}} 
+            value={text}>
+            </textarea>
+        </section>
     )
 }
 
